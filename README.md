@@ -1,1 +1,840 @@
-# calendrier-economique
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calendrier économique - Événements majeurs de la semaine du 2 au 6 février 2026">
+    <meta property="og:title" content="Calendrier Économique - 2-6 Février 2026">
+    <meta property="og:description" content="Tous les événements économiques majeurs de la semaine">
+    <meta property="og:type" content="website">
+    <title>Calendrier Économique - 2-6 Février 2026</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;500;600;700&family=Rajdhani:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 100%);
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00D9FF, #7B2FF7);
+            color: #0A0E27;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 38px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: #7B8BA8;
+            font-weight: 500;
+        }
+        
+        .dashboard {
+            background: linear-gradient(135deg, #0D1229 0%, #1A1F3A 100%);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 217, 255, 0.15);
+            border: 1px solid rgba(123, 47, 247, 0.2);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00D9FF 0%, #7B2FF7 50%, #FFD700 100%);
+        }
+        
+        .day-header {
+            background: rgba(0, 217, 255, 0.1);
+            border-left: 4px solid #00D9FF;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+        }
+        
+        .day-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            color: #00D9FF;
+            margin-bottom: 4px;
+        }
+        
+        .day-subtitle {
+            font-size: 13px;
+            color: #7B8BA8;
+            font-weight: 500;
+        }
+        
+        .events-grid {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .event-card {
+            background: rgba(26, 31, 58, 0.5);
+            border-radius: 12px;
+            padding: 18px 20px;
+            border: 1px solid rgba(123, 47, 247, 0.15);
+            transition: all 0.3s ease;
+            display: grid;
+            grid-template-columns: 80px 60px 1fr 120px 120px 100px;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        .event-card:hover {
+            background: rgba(26, 31, 58, 0.8);
+            border-color: rgba(0, 217, 255, 0.3);
+            transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(0, 217, 255, 0.15);
+        }
+        
+        .event-card.high-importance {
+            border-left: 3px solid #FF3366;
+        }
+        
+        .event-card.medium-importance {
+            border-left: 3px solid #FFD700;
+        }
+        
+        .event-card.low-importance {
+            border-left: 3px solid #7B8BA8;
+        }
+        
+        .event-time {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #00D9FF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .time-icon {
+            font-size: 16px;
+        }
+        
+        .event-country {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .flag {
+            font-size: 24px;
+        }
+        
+        .country-code {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: #FFFFFF;
+        }
+        
+        .event-title {
+            font-size: 14px;
+            color: #E0E6F0;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        
+        .event-title strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+        
+        .importance {
+            display: flex;
+            gap: 3px;
+        }
+        
+        .star {
+            font-size: 14px;
+        }
+        
+        .star.filled {
+            color: #FFD700;
+        }
+        
+        .star.empty {
+            color: #2A2F4A;
+        }
+        
+        .data-values {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .data-label {
+            font-size: 11px;
+            color: #7B8BA8;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .data-value {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #FFFFFF;
+        }
+        
+        .data-value.positive {
+            color: #00FF88;
+        }
+        
+        .data-value.negative {
+            color: #FF3366;
+        }
+        
+        .impact-badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .impact-high {
+            background: rgba(255, 51, 102, 0.15);
+            color: #FF3366;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+        }
+        
+        .impact-medium {
+            background: rgba(255, 215, 0, 0.15);
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .impact-low {
+            background: rgba(123, 139, 168, 0.15);
+            color: #7B8BA8;
+            border: 1px solid rgba(123, 139, 168, 0.3);
+        }
+        
+        .summary-box {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(26, 31, 58, 0.4);
+            border-radius: 12px;
+            border-left: 4px solid #FFD700;
+        }
+        
+        .summary-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #FFD700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .summary-text {
+            color: #B8C5D6;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .summary-text strong {
+            color: #00D9FF;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(26, 31, 58, 0.3);
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #7B8BA8;
+        }
+        
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-high {
+            background: #FF3366;
+        }
+        
+        .dot-medium {
+            background: #FFD700;
+        }
+        
+        .dot-low {
+            background: #7B8BA8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            color: #7B8BA8;
+            font-size: 13px;
+        }
+
+        .footer a {
+            color: #00D9FF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #7B2FF7;
+        }
+        
+        @media (max-width: 1200px) {
+            .event-card {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .data-row {
+                justify-content: flex-start;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            
+            .dashboard {
+                padding: 20px 15px;
+            }
+            
+            .event-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="date-badge">📅 CALENDRIER ÉCONOMIQUE</div>
+            <h1>News de la Semaine</h1>
+            <div class="subtitle">Événements économiques majeurs - 2 au 6 février 2026</div>
+        </div>
+        
+        <!-- LUNDI 2 FÉVRIER -->
+        <div class="dashboard">
+            <div class="day-header">
+                <div class="day-title">📊 Lundi 2 février 2026</div>
+                <div class="day-subtitle">Indicateurs PMI manufacturier + Réunion OPEP</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card medium-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕐</span>
+                        <span>11:00</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🛢️</span>
+                        <span class="country-code">OPEP</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Réunion OPEP</strong>
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star empty">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Info</span>
+                            <span class="data-value">Production</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-medium">Moyen</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕒</span>
+                        <span>15:45</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>PMI manufacturier</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">51,9</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕓</span>
+                        <span>16:00</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Indice PMI manufacturier de l'ISM</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">47,9</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Avant</span>
+                            <span class="data-value">48,5</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MARDI 3 FÉVRIER -->
+        <div class="dashboard">
+            <div class="day-header">
+                <div class="day-title">💼 Mardi 3 février 2026</div>
+                <div class="day-subtitle">Rapport sur les offres d'emploi</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕓</span>
+                        <span>16:00</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Rapport JOLTS - Nouvelles offres d'emploi</strong> (Déc)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value positive">7,146M</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Avant</span>
+                            <span class="data-value">7,210M</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MERCREDI 4 FÉVRIER -->
+        <div class="dashboard">
+            <div class="day-header">
+                <div class="day-title">🔥 Mercredi 4 février 2026</div>
+                <div class="day-subtitle">Journée chargée - Emploi ADP, PMI services et Bilan FED</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕑</span>
+                        <span>14:15</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Créations d'emplois non agricoles ADP</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">41K</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Avant</span>
+                            <span class="data-value">48K</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕒</span>
+                        <span>15:45</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>PMI services</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">52,5</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕓</span>
+                        <span>16:00</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Indice PMI non manufacturier de l'ISM</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">53,8</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕓</span>
+                        <span>16:30</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Stocks de pétrole brut</strong>
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value negative">-2,295M</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕥</span>
+                        <span>22:30</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Bilan de la Fed</strong>
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">6,582B</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JEUDI 5 FÉVRIER -->
+        <div class="dashboard">
+            <div class="day-header">
+                <div class="day-title">📉 Jeudi 5 février 2026</div>
+                <div class="day-subtitle">Inscriptions au chômage</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕑</span>
+                        <span>14:30</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Inscriptions hebdomadaires au chômage</strong>
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">209K</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Avant</span>
+                            <span class="data-value">213K</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- VENDREDI 6 FÉVRIER -->
+        <div class="dashboard">
+            <div class="day-header">
+                <div class="day-title">🚀 Vendredi 6 février 2026</div>
+                <div class="day-subtitle">Rapport emploi NFP - Journée critique !</div>
+            </div>
+            
+            <div class="events-grid">
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕑</span>
+                        <span>14:30</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Salaire horaire moyen (Mensuel)</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">0,3%</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕑</span>
+                        <span>14:30</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Créations d'emplois dans le secteur non agricole (NFP)</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">50K</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">Avant</span>
+                            <span class="data-value">67K</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+                
+                <div class="event-card high-importance">
+                    <div class="event-time">
+                        <span class="time-icon">🕑</span>
+                        <span>14:30</span>
+                    </div>
+                    <div class="event-country">
+                        <span class="flag">🇺🇸</span>
+                        <span class="country-code">USD</span>
+                    </div>
+                    <div class="event-title">
+                        <strong>Taux de chômage</strong> (Jan.)
+                    </div>
+                    <div class="importance">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <div class="data-values">
+                        <div class="data-row">
+                            <span class="data-label">Préc.</span>
+                            <span class="data-value">4,4%</span>
+                        </div>
+                    </div>
+                    <div class="impact-badge impact-high">Fort Impact</div>
+                </div>
+            </div>
+            
+            <div class="summary-box">
+                <div class="summary-title">
+                    <span>⚠️</span>
+                    <span>Alerte Maximale - NFP Friday</span>
+                </div>
+                <div class="summary-text">
+                    <strong>VENDREDI 6 FÉVRIER = JOURNÉE CRITIQUE !</strong> Publication du rapport NFP (Non-Farm Payrolls) avec les <strong>créations d'emplois (67K attendus)</strong>, le <strong>taux de chômage (4,4%)</strong> et les <strong>salaires horaires (+0,3%)</strong>. Ces données sont scrutées par la Fed et peuvent provoquer une forte volatilité sur tous les marchés. Préparez votre stratégie de trading en conséquence !
+                </div>
+            </div>
+        </div>
+        
+        <!-- LÉGENDE GLOBALE -->
+        <div class="dashboard">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-dot dot-high"></div>
+                    <span>Fort Impact (★★★) - Volatilité attendue</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-medium"></div>
+                    <span>Impact Moyen (★★) - Suivi recommandé</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot dot-low"></div>
+                    <span>Faible Impact (★) - Information contextuelle</span>
+                </div>
+            </div>
+            
+            <div class="summary-box" style="margin-top: 20px;">
+                <div class="summary-title">
+                    <span>📌</span>
+                    <span>Vue d'ensemble de la semaine</span>
+                </div>
+                <div class="summary-text">
+                    Semaine cruciale avec le <strong>rapport NFP du vendredi 6 février</strong> comme point d'orgue. En amont, surveiller l'<strong>emploi ADP mercredi</strong> (indicateur avancé du NFP) et les <strong>PMI manufacturier et services</strong> pour évaluer la santé de l'économie US. Le <strong>rapport JOLTS mardi</strong> donnera des indices sur le marché du travail. Les <strong>stocks pétroliers</strong> peuvent influencer les prix de l'énergie. Préparez-vous à une fin de semaine volatile !
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Calendrier Économique 2026 | Mise à jour hebdomadaire</p>
+        </div>
+    </div>
+</body>
+</html>
